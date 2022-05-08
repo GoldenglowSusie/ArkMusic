@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.home.HomeFragment">
+
+    <ImageView
+        android:id="@+id/cover"
+        android:layout_width="252dp"
+        android:layout_height="185dp"
+        android:layout_marginTop="30dp"
+        android:src="@mipmap/ic_arkmusic"
+        android:textAlignment="center"
+        app:layout_constraintBottom_toTopOf="@+id/name"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.496"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="Arkmusic"
+        android:textAlignment="center"
+        android:textColor="#090909"
+        android:textSize="34sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/cover" />
+
+    <TextView
+        android:id="@+id/usage"
+        android:layout_width="230dp"
+        android:layout_height="22dp"
+        android:layout_marginTop="16dp"
+        android:text="BETA Version"
+        android:textAlignment="center"
+        android:textColor="#5C5A5A"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/name" />
+
+    <ImageButton
+        android:id="@+id/play"
+        android:layout_width="24dp"
+        android:layout_height="24dp"
+        android:layout_marginTop="25dp"
+        android:layout_marginEnd="24dp"
+        android:src="@android:drawable/ic_media_play"
+        app:layout_constraintEnd_toStartOf="@+id/stop"
+        app:layout_constraintTop_toBottomOf="@+id/usage"
+        app:tint="#121111" />
+
+    <ImageButton
+        android:id="@+id/stop"
+        android:layout_width="24dp"
+        android:layout_height="0dp"
+        android:background="#131313"
+        android:minHeight="48dp"
+        android:scrollbarThumbHorizontal="@color/black"
+        android:scrollbarThumbVertical="@color/black"
+        android:src="@color/black"
+        app:layout_constraintBottom_toBottomOf="@+id/play"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.56"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/play"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <ImageButton
+        android:id="@+id/previous"
+        android:layout_width="24dp"
+        android:layout_height="24dp"
+        android:layout_marginTop="25dp"
+        android:layout_marginEnd="24dp"
+        android:src="@android:drawable/ic_media_previous"
+        app:layout_constraintEnd_toStartOf="@+id/play"
+        app:layout_constraintTop_toBottomOf="@+id/usage"
+        app:tint="#0C0C0C" />
+
+    <ImageButton
+        android:id="@+id/next"
+        android:layout_width="24dp"
+        android:layout_height="24dp"
+        android:layout_marginStart="24dp"
+        android:src="@android:drawable/ic_media_next"
+        app:layout_constraintBottom_toBottomOf="@+id/stop"
+        app:layout_constraintStart_toEndOf="@+id/stop"
+        app:layout_constraintTop_toTopOf="@+id/stop"
+        app:layout_constraintVertical_bias="0.0"
+        app:tint="#101010" />
+
+    <ImageView
+        android:id="@+id/suzy"
+        android:layout_width="214dp"
+        android:layout_height="197dp"
+        android:src="@drawable/head"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+</androidx.constraintlayout.widget.ConstraintLayout>

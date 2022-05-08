@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="GradleMigrationSettings" migrationVersion="1" />
+  <component name="GradleSettings">
+    <option name="linkedExternalProjectsSettings">
+      <GradleProjectSettings>
+        <option name="testRunner" value="GRADLE" />
+        <option name="distributionType" value="DEFAULT_WRAPPED" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="modules">
+          <set>
+            <option value="$PROJECT_DIR$" />
+            <option value="$PROJECT_DIR$/app" />
+            <option value="$PROJECT_DIR$/exoplayer-library-flac" />
+            <option value="F:/Exoplayer/extensions/av1" />
+            <option value="F:/Exoplayer/extensions/cast" />
+            <option value="F:/Exoplayer/extensions/cronet" />
+            <option value="F:/Exoplayer/extensions/ffmpeg" />
+            <option value="F:/Exoplayer/extensions/flac" />
+            <option value="F:/Exoplayer/extensions/ima" />
+            <option value="F:/Exoplayer/extensions/leanback" />
+            <option value="F:/Exoplayer/extensions/media2" />
+            <option value="F:/Exoplayer/extensions/mediasession" />
+            <option value="F:/Exoplayer/extensions/okhttp" />
+            <option value="F:/Exoplayer/extensions/opus" />
+            <option value="F:/Exoplayer/extensions/rtmp" />
+            <option value="F:/Exoplayer/extensions/vp9" />
+            <option value="F:/Exoplayer/extensions/workmanager" />
+            <option value="F:/Exoplayer/library/all" />
+            <option value="F:/Exoplayer/library/common" />
+            <option value="F:/Exoplayer/library/core" />
+            <option value="F:/Exoplayer/library/dash" />
+            <option value="F:/Exoplayer/library/database" />
+            <option value="F:/Exoplayer/library/datasource" />
+            <option value="F:/Exoplayer/library/decoder" />
+            <option value="F:/Exoplayer/library/extractor" />
+            <option value="F:/Exoplayer/library/hls" />
+            <option value="F:/Exoplayer/library/rtsp" />
+            <option value="F:/Exoplayer/library/smoothstreaming" />
+            <option value="F:/Exoplayer/library/transformer" />
+            <option value="F:/Exoplayer/library/ui" />
+            <option value="F:/Exoplayer/robolectricutils" />
+            <option value="F:/Exoplayer/testdata" />
+            <option value="F:/Exoplayer/testutils" />
+          </set>
+        </option>
+        <option name="resolveModulePerSourceSet" value="false" />
+      </GradleProjectSettings>
+    </option>
+  </component>
+</project>

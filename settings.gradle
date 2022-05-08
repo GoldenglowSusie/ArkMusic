@@ -1,0 +1,24 @@
+pluginManagement {
+    repositories {
+        gradlePluginPortal()
+        google()
+        mavenCentral()
+    }
+}
+dependencyResolutionManagement {
+    repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
+    repositories {
+        maven {url 'https://maven.aliyun.com/repository/central'}
+        maven {url 'https://maven.aliyun.com/repository/public'}
+        maven {url 'https://maven.aliyun.com/repository/google'}
+        maven {url 'https://maven.aliyun.com/repository/gradle-plugin'}
+        google()
+        mavenCentral()
+    }
+
+}
+
+rootProject.name = "ArkMusic"
+include ':app',':exoplayer-library-flac'
+gradle.ext.exoplayerModulePrefix = 'exoplayer-'
+apply from: file("F:/Exoplayer/core_settings.gradle")
