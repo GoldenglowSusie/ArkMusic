@@ -195,11 +195,11 @@ public class GalleryFragment extends Fragment{
                 if(BluetoothProfile.STATE_DISCONNECTED == adapter.getProfileConnectionState(BluetoothProfile.HEADSET)) {
                     //Bluetooth headset is now disconnected
                     Log.d("BLUE","BLUE");
-                    intentt.putExtra("control",62);
+                    intentt.putExtra("control2",62);
                     getActivity().sendBroadcast(intentt);
                 }
             } if(AudioManager.ACTION_AUDIO_BECOMING_NOISY.equals(action)){
-                intentt.putExtra("control",62);
+                intentt.putExtra("control2",62);
                 getActivity().sendBroadcast(intentt);
             }
         }
