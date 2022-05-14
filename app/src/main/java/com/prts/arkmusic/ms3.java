@@ -67,13 +67,17 @@ public class ms3 extends Service {
                 ep.setRepeatMode(Player.REPEAT_MODE_ONE);
             }
         };
+        Intent sendIntent = new Intent(EpFragment.UPDATE_ACTION);
+        sendIntent.putExtra("current3",current);
+        sendIntent.putExtra("suzy3",suzy);
+        sendBroadcast(sendIntent);
 
         class MyReceiver extends BroadcastReceiver {
             @Override
             public void onReceive(final Context context, Intent intent) {
                 // 获取Intent中的Control状态
                 Intent sendIntent = new Intent(EpFragment.UPDATE_ACTION);
-                int control = intent.getIntExtra("control", -1);
+                int control = intent.getIntExtra("control3", -1);
                 switch (control) {
                     // 播放或暂停
                     case 13:
@@ -83,12 +87,12 @@ public class ms3 extends Service {
                             ep.play();
                             egg=2;
                             status=0x12;
-                            sendIntent.putExtra("update",status);
-                            sendIntent.putExtra("suzy",suzy);
+                            sendIntent.putExtra("update3",status);
+                            sendIntent.putExtra("suzy3",suzy);
                             sendBroadcast(sendIntent);
                         }
                         if (status == 0x11) {
-                            if(current==0||current==2){
+                            if(current==0||current==2||current==4){
                                 suzy=0x12;
                             }
                             else{
@@ -100,9 +104,9 @@ public class ms3 extends Service {
                             ep.setRepeatMode(Player.REPEAT_MODE_ONE);
                             ep.prepare();
                             ep.play();
-                            sendIntent.putExtra("update", status);
-                            sendIntent.putExtra("current", current);
-                            sendIntent.putExtra("suzy",suzy);
+                            sendIntent.putExtra("update3", status);
+                            sendIntent.putExtra("current3", current);
+                            sendIntent.putExtra("suzy3",suzy);
                             sendBroadcast(sendIntent);
                         }
                         // 原来处于播放状态
@@ -111,13 +115,13 @@ public class ms3 extends Service {
                             ep.pause();
                             // 改变为暂停状态
                             status = 0x13;
-                            sendIntent.putExtra("update", status);
+                            sendIntent.putExtra("update3", status);
                             sendBroadcast(sendIntent);
                             if(egg==2){}
                             else{
-                            sendIntent.putExtra("update", status);
-                            sendIntent.putExtra("current", current);
-                            sendIntent.putExtra("suzy",suzy);
+                            sendIntent.putExtra("update3", status);
+                            sendIntent.putExtra("current3", current);
+                            sendIntent.putExtra("suzy3",suzy);
                             sendBroadcast(sendIntent);}
                         }
                         // 原来处于暂停状态
@@ -126,13 +130,13 @@ public class ms3 extends Service {
                             ep.play();
                             // 改变状态
                             status = 0x12;
-                            sendIntent.putExtra("update", status);
+                            sendIntent.putExtra("update3", status);
                             sendBroadcast(sendIntent);
                             if(egg==2){}
                             else{
-                            sendIntent.putExtra("update", status);
-                            sendIntent.putExtra("current", current);
-                            sendIntent.putExtra("suzy",suzy);
+                            sendIntent.putExtra("update3", status);
+                            sendIntent.putExtra("current3", current);
+                            sendIntent.putExtra("suzy3",suzy);
                             sendBroadcast(sendIntent);}
                         }
 
@@ -145,9 +149,9 @@ public class ms3 extends Service {
                             ep.clearMediaItems();
                             status=0x11;
                         }
-                        sendIntent.putExtra("update", status);
-                        sendIntent.putExtra("current", current);
-                        sendIntent.putExtra("suzy",suzy);
+                        sendIntent.putExtra("update3", status);
+                        sendIntent.putExtra("current3", current);
+                        sendIntent.putExtra("suzy3",suzy);
                         sendBroadcast(sendIntent);
                         break;
                     //上一首
@@ -162,7 +166,7 @@ public class ms3 extends Service {
                         else{
                             current--;
                         }
-                        if(current==0||current==2){
+                        if(current==0||current==2||current==4){
                             suzy=0x12;
                         }
                         else{
@@ -176,9 +180,9 @@ public class ms3 extends Service {
                             ep.play();
                             status = 0x12;
                         }
-                        sendIntent.putExtra("update", status);
-                        sendIntent.putExtra("current", current);
-                        sendIntent.putExtra("suzy",suzy);
+                        sendIntent.putExtra("update3", status);
+                        sendIntent.putExtra("current3", current);
+                        sendIntent.putExtra("suzy3",suzy);
                         sendBroadcast(sendIntent);
                         break;
                     //下一首
@@ -192,7 +196,7 @@ public class ms3 extends Service {
                         else{
                             current++;
                         }
-                        if(current==0||current==2){
+                        if(current==0||current==2||current==4){
                             suzy=0x12;
                         }
                         else{
@@ -205,9 +209,9 @@ public class ms3 extends Service {
                             ep.play();
                             status = 0x12;
                         }
-                        sendIntent.putExtra("update", status);
-                        sendIntent.putExtra("current", current);
-                        sendIntent.putExtra("suzy",suzy);
+                        sendIntent.putExtra("update3", status);
+                        sendIntent.putExtra("current3", current);
+                        sendIntent.putExtra("suzy3",suzy);
                         sendBroadcast(sendIntent);
                         break;
                     case 53:

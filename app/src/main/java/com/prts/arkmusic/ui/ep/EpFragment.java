@@ -106,28 +106,28 @@ public class EpFragment extends Fragment{
         play.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                intent.putExtra("control",13);
+                intent.putExtra("control3",13);
                 getActivity().sendBroadcast(intent);
             }
         });
         stop.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                intent.putExtra("control",23);
+                intent.putExtra("control3",23);
                 getActivity().sendBroadcast(intent);
             }
         });
         previous.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                intent.putExtra("control",33);
+                intent.putExtra("control3",33);
                 getActivity().sendBroadcast(intent);
             }
         });
         next.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                intent.putExtra("control",43);
+                intent.putExtra("control3",43);
                 getActivity().sendBroadcast(intent);
             }
         });
@@ -144,7 +144,7 @@ public class EpFragment extends Fragment{
                     dia.setCancelable(false);
                     dia.setMessage("恭喜你发现了这个彩蛋！"+"\n"+"这个彩蛋展现了拥有强大源石技艺的作者的歌喉，"+"\n"+"预计能造成大量神经损伤和真实伤害，并大幅降低防御力和法术抗性。"+"\n"+"你现在还有机会离开。还有。");
                     dia.show();
-                    intent.putExtra("control",1590107);
+                    intent.putExtra("control3",1590107);
                     getActivity().sendBroadcast(intent);
                      }
             }
@@ -157,7 +157,7 @@ public class EpFragment extends Fragment{
     public void onDestroyView() {
         super.onDestroyView();
         Intent intent=new Intent(CTL_ACTION);
-        intent.putExtra("control",53);
+        intent.putExtra("control3",53);
         getActivity().sendBroadcast(intent);
         getActivity().stopService(new Intent(getActivity(),ms3.class));
         binding = null;
@@ -166,9 +166,9 @@ public class EpFragment extends Fragment{
         @Override
         public void onReceive(Context context, Intent intent) {
 
-            int update = intent.getIntExtra("update",-1);
-            int current = intent.getIntExtra("current", -1);
-            int suzyy=intent.getIntExtra("suzy",-1);
+            int update = intent.getIntExtra("update3",-1);
+            int current = intent.getIntExtra("current3", -1);
+            int suzyy=intent.getIntExtra("suzy3",-1);
             int egg=intent.getIntExtra("egg",-1);
 
             if(egg==1){

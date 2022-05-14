@@ -27,6 +27,7 @@ import com.google.android.exoplayer2.upstream.DefaultDataSource;
 import com.google.android.exoplayer2.upstream.DefaultDataSourceFactory;
 import com.google.android.exoplayer2.upstream.DefaultHttpDataSource;
 import com.google.android.exoplayer2.util.Util;
+import com.prts.arkmusic.ui.ep.EpFragment;
 import com.prts.arkmusic.ui.home.HomeFragment;
 
 public class MusicService extends Service {
@@ -58,6 +59,10 @@ public class MusicService extends Service {
         // 创建IntentFilter
         IntentFilter filter = new IntentFilter();
         filter.addAction(MainActivity.CTL_ACTION);
+        Intent sendIntent = new Intent(HomeFragment.UPDATE_ACTION);
+        sendIntent.putExtra("current",current);
+        sendIntent.putExtra("suzy",suzy);
+        sendBroadcast(sendIntent);
 
         Player.Listener listener=new Player.Listener() {
             @Override

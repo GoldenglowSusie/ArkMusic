@@ -107,28 +107,28 @@ public class GalleryFragment extends Fragment{
         play.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                intent.putExtra("control",12);
+                intent.putExtra("control2",12);
                 getActivity().sendBroadcast(intent);
             }
         });
         stop.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                intent.putExtra("control",22);
+                intent.putExtra("control2",22);
                 getActivity().sendBroadcast(intent);
             }
         });
         previous.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                intent.putExtra("control",32);
+                intent.putExtra("control2",32);
                 getActivity().sendBroadcast(intent);
             }
         });
         next.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                intent.putExtra("control",42);
+                intent.putExtra("control2",42);
                 getActivity().sendBroadcast(intent);
             }
         });
@@ -141,7 +141,7 @@ public class GalleryFragment extends Fragment{
     public void onDestroyView() {
         super.onDestroyView();
         Intent intent=new Intent(CTL_ACTION);
-        intent.putExtra("control",52);
+        intent.putExtra("control2",52);
         getActivity().sendBroadcast(intent);
         getActivity().stopService(new Intent(getActivity(),ms2.class));
         binding = null;
@@ -150,9 +150,9 @@ public class GalleryFragment extends Fragment{
         @Override
         public void onReceive(Context context, Intent intent) {
 
-            int update = intent.getIntExtra("update",-1);
-            int current = intent.getIntExtra("current", -1);
-            int suzyy=intent.getIntExtra("suzy",-1);
+            int update = intent.getIntExtra("update2",-1);
+            int current = intent.getIntExtra("current2", -1);
+            int suzyy=intent.getIntExtra("suzy2",-1);
 
             if (current >= 0){
                 name.setText(titleStrs[current]);

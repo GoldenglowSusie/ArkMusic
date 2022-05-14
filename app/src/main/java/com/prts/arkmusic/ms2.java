@@ -73,7 +73,7 @@ public class ms2 extends Service {
             @Override
             public void onReceive(final Context context, Intent intent) {
                 // 获取Intent中的Control状态
-                int control = intent.getIntExtra("control", -1);
+                int control = intent.getIntExtra("control2", -1);
                 switch (control) {
                     // 播放或暂停
                     case 12:
@@ -197,9 +197,9 @@ public class ms2 extends Service {
                 }
                 // 广播通知Activity更改图标、文本框
                 Intent sendIntent = new Intent(GalleryFragment.UPDATE_ACTION);
-                sendIntent.putExtra("update", status);
-                sendIntent.putExtra("current", current);
-                sendIntent.putExtra("suzy",suzy);
+                sendIntent.putExtra("update2", status);
+                sendIntent.putExtra("current2", current);
+                sendIntent.putExtra("suzy2",suzy);
                 // 发送广播，将被Activity组件中的BroadcastReceiver接收到
                 sendBroadcast(sendIntent);
             }
