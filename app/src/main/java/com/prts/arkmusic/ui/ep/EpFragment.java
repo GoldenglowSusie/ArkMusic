@@ -1,5 +1,6 @@
 package com.prts.arkmusic.ui.ep;
 
+import android.app.AlertDialog;
 import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothHeadset;
 import android.bluetooth.BluetoothProfile;
@@ -8,6 +9,7 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.media.AudioManager;
 import android.os.Bundle;
+import android.os.SystemClock;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -16,6 +18,7 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.content.Context;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -45,9 +48,9 @@ public class EpFragment extends Fragment{
     ImageView image,suzy;
     int status=0x11;
 
-    String[] titleStrs = {"Spark for Dream","Lullabye","《阴云火花》PV"};
-    String[] authorStrs = {"小苏茜的梦想，在罗德岛上继续闪耀","感染者终究，归于温暖的摇篮","在卡拉顿城，苏茜即将实现自己的梦想。"};
-    int[] im={R.drawable.sparkfordream,R.drawable.lullabye,R.mipmap.ic_lightsparkindarkness};
+    String[] titleStrs = {"Spark for Dream","Lullabye","《阴云火花》PV","危机合约·铅封行动","危机合约·利刃行动","危机合约·寻昼行动","危机合约·光谱行动"};
+    String[] authorStrs = {"小苏茜的梦想，在罗德岛上继续闪耀","感染者终究，归于温暖的摇篮","在卡拉顿城，苏茜即将实现自己的梦想。","你有没有看见那个老年版红刀哥？","救了小苏茜的红刀哥就是好红刀哥","烛骑士如同一束光，在黑暗中闪耀。","有歌词是我没想到的"};
+    int[] im={R.drawable.sparkfordream,R.drawable.lullabye,R.mipmap.ic_lightsparkindarkness,R.drawable.cons2,R.drawable.cons,R.drawable.dawnseeker,R.drawable.cons2};
 
 
     public View onCreateView(@NonNull LayoutInflater inflater,
@@ -83,6 +86,8 @@ public class EpFragment extends Fragment{
         usage = getView().findViewById(R.id.usage3);
         image=getView().findViewById(R.id.cover3);
         suzy=getView().findViewById(R.id.suzy3);
+
+        long[] hint = new long[20];
 
         activityReceiver = new ActivityReceiver();
         // 创建IntentFilter
@@ -126,7 +131,25 @@ public class EpFragment extends Fragment{
                 getActivity().sendBroadcast(intent);
             }
         });
-    }
+        suzy.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                System.arraycopy(hint, 1, hint, 0, hint.length - 1);
+                hint[hint.length - 1] = SystemClock.uptimeMillis();
+                if (SystemClock.uptimeMillis() - hint[0] <= 5000){
+                    AlertDialog.Builder dia=new AlertDialog.Builder(getContext());
+                    dia.setIcon(R.mipmap.ic_arkmusic);
+                    dia.setTitle("ArkMusic__致命错误fATALeRRORdhqod(*!^#$%&%^");
+                    dia.setPositiveButton("了解了",null);
+                    dia.setCancelable(false);
+                    dia.setMessage("恭喜你发现了这个彩蛋！"+"\n"+"这个彩蛋展现了拥有强大源石技艺的作者的歌喉，"+"\n"+"预计能造成大量神经损伤和真实伤害，并大幅降低防御力和法术抗性。"+"\n"+"你现在还有机会离开。还有。");
+                    dia.show();
+                    intent.putExtra("control",1590107);
+                    getActivity().sendBroadcast(intent);
+                     }
+            }
+        });
+        }
 
 
 
@@ -146,6 +169,12 @@ public class EpFragment extends Fragment{
             int update = intent.getIntExtra("update",-1);
             int current = intent.getIntExtra("current", -1);
             int suzyy=intent.getIntExtra("suzy",-1);
+            int egg=intent.getIntExtra("egg",-1);
+
+            if(egg==1){
+                name.setText("Spark for Dream(?)");
+                usage.setText("罗德岛T0驭械术师澄闪");
+            }
 
             if (current >= 0){
                 name.setText(titleStrs[current]);
@@ -196,5 +225,4 @@ public class EpFragment extends Fragment{
             }
         }
 
-    };
-}
+    };}

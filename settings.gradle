@@ -19,6 +19,6 @@ dependencyResolutionManagement {
 }
 
 rootProject.name = "ArkMusic"
-include ':app',':exoplayer-library-flac'
+include ':app',':exoplayer-extension-flac'
 gradle.ext.exoplayerModulePrefix = 'exoplayer-'
 apply from: file("F:/Exoplayer/core_settings.gradle")

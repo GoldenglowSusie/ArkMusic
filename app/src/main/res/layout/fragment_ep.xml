@@ -23,7 +23,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
-        android:text="Arkmusic"
+        android:text="ArkMusic"
         android:textAlignment="center"
         android:textColor="#090909"
         android:textSize="34sp"

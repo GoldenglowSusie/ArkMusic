@@ -2,7 +2,7 @@
     <string name="app_name">ArkMusic</string>
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
-    <string name="nav_header_title">Arkmusic</string>
+    <string name="nav_header_title">ArkMusic</string>
     <string name="nav_header_subtitle">一个专业的明日方舟BGM播放器</string>
     <string name="nav_header_desc">Navigation header</string>
     <string name="action_settings">Settings</string>
