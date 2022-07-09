@@ -17,6 +17,10 @@
             android:icon="@drawable/ic_music"
             android:title="EP与PV"/>
         <item
+            android:id="@+id/nav_special"
+            android:icon="@drawable/ic_special"
+            android:title="特别辑录"/>
+        <item
             android:id="@+id/nav_slideshow"
             android:icon="@drawable/ic_about"
             android:title="@string/menu_slideshow" />

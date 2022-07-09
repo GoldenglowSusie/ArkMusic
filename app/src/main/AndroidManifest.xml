@@ -26,6 +26,10 @@
             android:name=".MusicService"
             android:enabled="true"
             android:exported="false" />
+        <service
+            android:name=".specialService"
+            android:enabled="true"
+            android:exported="false"/>
 
         <activity
             android:name=".MainActivity"

@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.special.SpecialFragment">
+    <ImageView
+        android:id="@+id/cover4"
+        android:layout_width="252dp"
+        android:layout_height="185dp"
+        android:layout_marginTop="30dp"
+        android:src="@mipmap/ic_arkmusic"
+        android:textAlignment="center"
+        app:layout_constraintBottom_toTopOf="@+id/name4"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.496"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/name4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="ArkMusic"
+        android:textAlignment="center"
+        android:textColor="#090909"
+        android:textSize="34sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/cover4" />
+
+    <TextView
+        android:id="@+id/usage4"
+        android:layout_width="300dp"
+        android:layout_height="22dp"
+        android:layout_marginTop="16dp"
+        android:text="BETA Version"
+        android:textAlignment="center"
+        android:textColor="#5C5A5A"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/name4" />
+
+    <ImageButton
+        android:id="@+id/play4"
+        android:layout_width="24dp"
+        android:layout_height="24dp"
+        android:layout_marginTop="25dp"
+        android:layout_marginEnd="24dp"
+        android:src="@android:drawable/ic_media_play"
+        app:layout_constraintEnd_toStartOf="@+id/stop4"
+        app:layout_constraintTop_toBottomOf="@+id/usage4"
+        app:tint="#121111" />
+
+    <ImageButton
+        android:id="@+id/stop4"
+        android:layout_width="24dp"
+        android:layout_height="0dp"
+        android:background="#131313"
+        android:minHeight="48dp"
+        android:scrollbarThumbHorizontal="@color/black"
+        android:scrollbarThumbVertical="@color/black"
+        android:src="@color/black"
+        app:layout_constraintBottom_toBottomOf="@+id/play4"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.56"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/play4"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <ImageButton
+        android:id="@+id/previous4"
+        android:layout_width="24dp"
+        android:layout_height="24dp"
+        android:layout_marginTop="25dp"
+        android:layout_marginEnd="24dp"
+        android:src="@android:drawable/ic_media_previous"
+        app:layout_constraintEnd_toStartOf="@+id/play4"
+        app:layout_constraintTop_toBottomOf="@+id/usage4"
+        app:tint="#0C0C0C" />
+
+    <ImageButton
+        android:id="@+id/next4"
+        android:layout_width="24dp"
+        android:layout_height="24dp"
+        android:layout_marginStart="24dp"
+        android:src="@android:drawable/ic_media_next"
+        app:layout_constraintBottom_toBottomOf="@+id/stop4"
+        app:layout_constraintStart_toEndOf="@+id/stop4"
+        app:layout_constraintTop_toTopOf="@+id/stop4"
+        app:layout_constraintVertical_bias="0.0"
+        app:tint="#101010" />
+
+    <ImageView
+        android:id="@+id/suzy4"
+        android:layout_width="214dp"
+        android:layout_height="197dp"
+        android:src="@drawable/head"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -21,7 +21,11 @@
         android:name="com.prts.arkmusic.ui.ep.EpFragment"
         android:label="EP与PV"
         tools:layout="@layout/fragment_ep"/>
-
+    <fragment
+        android:id="@+id/nav_special"
+        android:name="com.prts.arkmusic.ui.special.SpecialFragment"
+        android:label="特别辑录"
+        tools:layout="@layout/fragment_special"/>
     <fragment
         android:id="@+id/nav_slideshow"
         android:name="com.prts.arkmusic.ui.slideshow.SlideshowFragment"
