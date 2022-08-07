@@ -222,17 +222,6 @@ public class specialService extends Service {
                     case 63:
                         ep.pause();
                         status=0x13;
-                    case 1590107:
-                        if(current==0){
-                            if(status==0x11){
-                                ep.clearMediaItems();
-                                ep.setRepeatMode(Player.REPEAT_MODE_ONE);
-                                ep.addMediaItem(MediaItem.fromUri("asset:///easteregg.wav"));
-                                egg=1;
-                                sendIntent.putExtra("egg",1);
-                                sendBroadcast(sendIntent);
-                            }
-                        }
                 }
 
             }

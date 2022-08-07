@@ -103,6 +103,7 @@ public class SpecialFragment extends Fragment{
         IntentFilter bluetoothFilter = new IntentFilter(BluetoothHeadset.ACTION_CONNECTION_STATE_CHANGED);
         getActivity().registerReceiver(headsetPlugReceiver, bluetoothFilter);
 
+
         play.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -178,7 +179,6 @@ public class SpecialFragment extends Fragment{
         Intent intentt=new Intent(CTL_ACTION);
         @Override
         public void onReceive(Context context, Intent intent) {
-
             String action = intent.getAction();
             if (BluetoothHeadset.ACTION_CONNECTION_STATE_CHANGED.equals(action)) {
                 BluetoothAdapter adapter = BluetoothAdapter.getDefaultAdapter();
@@ -194,4 +194,8 @@ public class SpecialFragment extends Fragment{
             }
         }
 
-    };}
+
+    };
+
+
+}

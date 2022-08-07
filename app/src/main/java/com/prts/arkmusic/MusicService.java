@@ -34,7 +34,7 @@ public class MusicService extends Service {
 
     AssetManager am;
     Thread processThread;
-    static final String[] musics = {"m_avg_chenandwei_intro.wav", "m_avg_chenandwei_loop.wav", "m_sys_act18d0d0_intro.wav", "m_sys_act18d0d0_loop.wav"};
+    static final String[] musics = {"m_avg_chenandwei_intro.wav", "m_avg_chenandwei_loop.wav", "m_sys_act18d0d0_intro.wav", "m_sys_act18d0d0_loop.wav","m_sys_act12side_intro.wav","m_sys_act12side_loop.wav"};
 
 
     // 当前的状态，0x11代表没有播放；0x12代表正在播放；0x13代表暂停
