@@ -185,12 +185,17 @@ public class HomeFragment extends Fragment{
                 BluetoothAdapter adapter = BluetoothAdapter.getDefaultAdapter();
                 if(BluetoothProfile.STATE_DISCONNECTED == adapter.getProfileConnectionState(BluetoothProfile.HEADSET)) {
                     //Bluetooth headset is now disconnected
-                    Log.d("BLUE","BLUE");
                     intentt.putExtra("control",6);
+                    intentt.putExtra("control2",62);
+                    intentt.putExtra("control3",63);
+                    intentt.putExtra("control4",64);
                     getActivity().sendBroadcast(intentt);
                 }
             } if(AudioManager.ACTION_AUDIO_BECOMING_NOISY.equals(action)){
                 intentt.putExtra("control",6);
+                intentt.putExtra("control2",62);
+                intentt.putExtra("control3",63);
+                intentt.putExtra("control4",64);
                 getActivity().sendBroadcast(intentt);
             }
         }

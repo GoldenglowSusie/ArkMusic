@@ -51,7 +51,7 @@ public class GalleryFragment extends Fragment{
 
     String[] titleStrs = {"Dash!", "Dash!", "皇帝的利刃","皇帝的利刃","倾潮","倾潮","巨浪与烈阳","巨浪与烈阳","Stop Breathing","Stop Breathing"};
     String[] authorStrs = {"燃就完事了", "燃就完事了", "《遗尘漫步》","《遗尘漫步》","此歌曲仅42.8秒","此歌曲仅42.8秒","382/403","382/403","咕嘟，咕嘟","咕嘟，咕嘟"};
-    int[] im={R.mipmap.ic_arkmusic,R.mipmap.ic_arkmusic,R.mipmap.ic_wd,R.mipmap.ic_wd,R.drawable.doss,R.drawable.doss,R.drawable.doss,R.drawable.doss,R.drawable.doss,R.drawable.doss};
+    int[] im={R.mipmap.ic_am2,R.mipmap.ic_am2,R.mipmap.ic_wd,R.mipmap.ic_wd,R.drawable.doss,R.drawable.doss,R.drawable.doss,R.drawable.doss,R.drawable.doss,R.drawable.doss};
 
 
     public View onCreateView(@NonNull LayoutInflater inflater,
@@ -194,12 +194,17 @@ public class GalleryFragment extends Fragment{
                 BluetoothAdapter adapter = BluetoothAdapter.getDefaultAdapter();
                 if(BluetoothProfile.STATE_DISCONNECTED == adapter.getProfileConnectionState(BluetoothProfile.HEADSET)) {
                     //Bluetooth headset is now disconnected
-                    Log.d("BLUE","BLUE");
+                    intentt.putExtra("control",6);
                     intentt.putExtra("control2",62);
+                    intentt.putExtra("control3",63);
+                    intentt.putExtra("control4",64);
                     getActivity().sendBroadcast(intentt);
                 }
             } if(AudioManager.ACTION_AUDIO_BECOMING_NOISY.equals(action)){
+                intentt.putExtra("control",6);
                 intentt.putExtra("control2",62);
+                intentt.putExtra("control3",63);
+                intentt.putExtra("control4",64);
                 getActivity().sendBroadcast(intentt);
             }
         }

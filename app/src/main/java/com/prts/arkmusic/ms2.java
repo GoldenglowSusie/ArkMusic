@@ -7,6 +7,9 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.res.AssetFileDescriptor;
 import android.content.res.AssetManager;
+import android.media.AudioAttributes;
+import android.media.AudioFocusRequest;
+import android.media.AudioManager;
 import android.os.IBinder;
 import android.util.Log;
 
@@ -28,6 +31,7 @@ import com.google.android.exoplayer2.upstream.DefaultDataSourceFactory;
 import com.google.android.exoplayer2.upstream.DefaultHttpDataSource;
 import com.google.android.exoplayer2.util.Util;
 import com.prts.arkmusic.ui.gallery.GalleryFragment;
+import com.prts.arkmusic.ui.home.HomeFragment;
 
 public class ms2 extends Service {
 
@@ -43,6 +47,7 @@ public class ms2 extends Service {
     int suzy=0x11;
     static final String CTL_ACTION = "arkmusic.action.CTL_ACTION";
     static final String UPDATE_ACTION = "arkmusic.action.UPDATE_ACTION";
+    AudioManager amm;
 
     @Override
     public IBinder onBind(Intent intent) {
@@ -53,6 +58,7 @@ public class ms2 extends Service {
     public void onCreate() {
         super.onCreate();
         am = getAssets(); //获取附件管理器
+        amm=(AudioManager)getSystemService(Context.AUDIO_SERVICE);
         ExoPlayer ep=new ExoPlayer.Builder(getApplicationContext()).build();
         // 创建IntentFilter
         IntentFilter filter = new IntentFilter();
@@ -69,6 +75,46 @@ public class ms2 extends Service {
             }
         };
 
+        AudioManager.OnAudioFocusChangeListener afChangeListener=new AudioManager.OnAudioFocusChangeListener() {
+            @Override
+            public void onAudioFocusChange(int focusChange) {
+                if(focusChange==AudioManager.AUDIOFOCUS_LOSS_TRANSIENT||focusChange==AudioManager.AUDIOFOCUS_LOSS_TRANSIENT_CAN_DUCK){
+                    ep.pause();
+                    status=0x13;
+                }else if(focusChange==AudioManager.AUDIOFOCUS_GAIN){
+                    ep.play();
+                    status=0x12;
+                }else if(focusChange==AudioManager.AUDIOFOCUS_LOSS){
+                    ep.stop();
+                    ep.removeListener(listener);
+                    ep.clearMediaItems();
+                    ep.setRepeatMode(Player.REPEAT_MODE_OFF);
+                    if (current == 0) {
+                        status = 0x11;
+                    } else if (current % 2 == 1) {
+                        current--;
+                        status = 0x11;
+                    } else {
+                        status = 0x11;
+                    }
+                    status=0x11;
+                }
+                Intent sendIntent = new Intent(HomeFragment.UPDATE_ACTION);
+                sendIntent.putExtra("update2", status);
+                sendBroadcast(sendIntent);
+            }
+        };
+
+        AudioAttributes playbackAttributes = new AudioAttributes.Builder()
+                .setUsage(AudioAttributes.USAGE_MEDIA)
+                .setContentType(AudioAttributes.CONTENT_TYPE_MUSIC)
+                .build();
+        AudioFocusRequest focusRequest = new AudioFocusRequest.Builder(AudioManager.AUDIOFOCUS_GAIN)
+                .setAudioAttributes(playbackAttributes)
+                .setAcceptsDelayedFocusGain(true)
+                .setOnAudioFocusChangeListener(afChangeListener)
+                .build();
+
         class MyReceiver extends BroadcastReceiver {
             @Override
             public void onReceive(final Context context, Intent intent) {
@@ -79,7 +125,7 @@ public class ms2 extends Service {
                     case 12:
                         // 原来处于没有播放状态
                         if (status == 0x11) {
-
+                            amm.requestAudioFocus(focusRequest);
                             // 准备并播放音乐
                             status = 0x12;
                             ep.addMediaItem(MediaItem.fromUri("asset:///" + musics[current]));
@@ -91,12 +137,14 @@ public class ms2 extends Service {
                         // 原来处于播放状态
                         else if (status == 0x12) {
                             // 暂停
+                            amm.abandonAudioFocusRequest(focusRequest);
                             ep.pause();
                             // 改变为暂停状态
                             status = 0x13;
                         }
                         // 原来处于暂停状态
                         else if (status == 0x13) {
+                            amm.requestAudioFocus(focusRequest);
                             // 播放
                             if (current % 2 == 0) {
                                 ep.play();
@@ -110,6 +158,7 @@ public class ms2 extends Service {
                     //停止声音
                     case 22:
                         if (status == 0x12 || status == 0x13) {
+                            amm.abandonAudioFocusRequest(focusRequest);
                             ep.stop();
                             ep.removeListener(listener);
                             ep.clearMediaItems();
@@ -182,15 +231,14 @@ public class ms2 extends Service {
                         }
                         break;
                     case 52:
-                        ep.stop();
-                        ep.removeListener(listener);
-                        ep.clearMediaItems();
-                        ep.setRepeatMode(Player.REPEAT_MODE_OFF);
+                        amm.abandonAudioFocusRequest(focusRequest);
+                        ep.release();
                         current=0;
                         status=0x11;
                         break;
                     case 62:
                         Log.d("REMOVE","REMOVE");
+                        amm.abandonAudioFocusRequest(focusRequest);
                         ep.pause();
                         status=0x13;
                         break;
