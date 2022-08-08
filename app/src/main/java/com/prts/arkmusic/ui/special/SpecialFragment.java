@@ -1,15 +1,14 @@
 package com.prts.arkmusic.ui.special;
 
-import android.app.AlertDialog;
 import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothHeadset;
 import android.bluetooth.BluetoothProfile;
 import android.content.BroadcastReceiver;
+import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.media.AudioManager;
 import android.os.Bundle;
-import android.os.SystemClock;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -17,25 +16,14 @@ import android.view.ViewGroup;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.content.Context;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentTransaction;
 import androidx.lifecycle.ViewModelProvider;
 
-import com.prts.arkmusic.MainActivity;
-import com.prts.arkmusic.MusicService;
 import com.prts.arkmusic.R;
 import com.prts.arkmusic.databinding.FragmentSpecialBinding;
 import com.prts.arkmusic.specialService;
-
-import org.xmlpull.v1.XmlPullParser;
-
-import java.util.List;
 
 public class SpecialFragment extends Fragment{
     public static final String CTL_ACTION = "arkmusic.action.CTL_ACTION";
@@ -50,7 +38,7 @@ public class SpecialFragment extends Fragment{
 
     String[] titleStrs = {"好运来","ばかみたい"};
     String[] authorStrs = {"歌手：祖海  下次寻访必出6星干员！！！","黒田崇矢  Damedane,dameyo~"};
-    int[] im={R.mipmap.ic_arkmusic,R.mipmap.ic_arkmusic};
+    int[] im={R.mipmap.ic_am2,R.mipmap.ic_am2};
 
 
     public View onCreateView(@NonNull LayoutInflater inflater,
@@ -184,12 +172,17 @@ public class SpecialFragment extends Fragment{
                 BluetoothAdapter adapter = BluetoothAdapter.getDefaultAdapter();
                 if(BluetoothProfile.STATE_DISCONNECTED == adapter.getProfileConnectionState(BluetoothProfile.HEADSET)) {
                     //Bluetooth headset is now disconnected
-                    Log.d("BLUE","BLUE");
-                    intentt.putExtra("control4",63);
+                    intentt.putExtra("control",6);
+                    intentt.putExtra("control2",62);
+                    intentt.putExtra("control3",63);
+                    intentt.putExtra("control4",64);
                     getActivity().sendBroadcast(intentt);
                 }
             } if(AudioManager.ACTION_AUDIO_BECOMING_NOISY.equals(action)){
-                intentt.putExtra("control4",63);
+                intentt.putExtra("control",6);
+                intentt.putExtra("control2",62);
+                intentt.putExtra("control3",63);
+                intentt.putExtra("control4",64);
                 getActivity().sendBroadcast(intentt);
             }
         }

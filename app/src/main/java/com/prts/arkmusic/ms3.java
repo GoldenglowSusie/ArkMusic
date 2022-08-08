@@ -5,31 +5,19 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
-import android.content.res.AssetFileDescriptor;
 import android.content.res.AssetManager;
+import android.media.AudioAttributes;
+import android.media.AudioFocusRequest;
+import android.media.AudioManager;
 import android.os.IBinder;
-import android.util.Log;
-
-import android.media.MediaPlayer;
-import android.widget.ImageView;
-import android.widget.TextView;
 
 import androidx.annotation.Nullable;
 
 import com.google.android.exoplayer2.ExoPlayer;
 import com.google.android.exoplayer2.MediaItem;
 import com.google.android.exoplayer2.Player;
-import com.google.android.exoplayer2.extractor.flac.FlacExtractor;
-import com.google.android.exoplayer2.SimpleExoPlayer;
-import com.google.android.exoplayer2.source.MediaSource;
-import com.google.android.exoplayer2.source.ProgressiveMediaSource;
-import com.google.android.exoplayer2.trackselection.DefaultTrackSelector;
-import com.google.android.exoplayer2.upstream.DataSource;
-import com.google.android.exoplayer2.upstream.DefaultDataSource;
-import com.google.android.exoplayer2.upstream.DefaultDataSourceFactory;
-import com.google.android.exoplayer2.upstream.DefaultHttpDataSource;
-import com.google.android.exoplayer2.util.Util;
 import com.prts.arkmusic.ui.ep.EpFragment;
+import com.prts.arkmusic.ui.home.HomeFragment;
 
 public class ms3 extends Service {
 
@@ -45,6 +33,7 @@ public class ms3 extends Service {
     int egg=0;
     static final String CTL_ACTION = "arkmusic.action.CTL_ACTION";
     static final String UPDATE_ACTION = "arkmusic.action.UPDATE_ACTION";
+    AudioManager amm;
 
 
     @Override
@@ -55,6 +44,7 @@ public class ms3 extends Service {
     public void onCreate() {
         super.onCreate();
         am = getAssets(); //获取附件管理器
+        amm=(AudioManager)getSystemService(Context.AUDIO_SERVICE);
         ExoPlayer ep=new ExoPlayer.Builder(getApplicationContext()).build();
         // 创建IntentFilter
         IntentFilter filter = new IntentFilter();
@@ -72,6 +62,36 @@ public class ms3 extends Service {
         sendIntent.putExtra("suzy3",suzy);
         sendBroadcast(sendIntent);
 
+        AudioManager.OnAudioFocusChangeListener afChangeListener=new AudioManager.OnAudioFocusChangeListener() {
+            @Override
+            public void onAudioFocusChange(int focusChange) {
+                if(focusChange==AudioManager.AUDIOFOCUS_LOSS_TRANSIENT||focusChange==AudioManager.AUDIOFOCUS_LOSS_TRANSIENT_CAN_DUCK){
+                    ep.pause();
+                    status=0x13;
+                }else if(focusChange==AudioManager.AUDIOFOCUS_GAIN){
+                    ep.play();
+                    status=0x12;
+                }else if(focusChange==AudioManager.AUDIOFOCUS_LOSS){
+                    ep.stop();
+                    ep.clearMediaItems();
+                    status=0x11;
+                }
+                Intent sendIntent = new Intent(HomeFragment.UPDATE_ACTION);
+                sendIntent.putExtra("update3", status);
+                sendBroadcast(sendIntent);
+            }
+        };
+
+        AudioAttributes playbackAttributes = new AudioAttributes.Builder()
+                .setUsage(AudioAttributes.USAGE_MEDIA)
+                .setContentType(AudioAttributes.CONTENT_TYPE_MUSIC)
+                .build();
+        AudioFocusRequest focusRequest = new AudioFocusRequest.Builder(AudioManager.AUDIOFOCUS_GAIN)
+                .setAudioAttributes(playbackAttributes)
+                .setAcceptsDelayedFocusGain(true)
+                .setOnAudioFocusChangeListener(afChangeListener)
+                .build();
+
         class MyReceiver extends BroadcastReceiver {
             @Override
             public void onReceive(final Context context, Intent intent) {
@@ -83,6 +103,7 @@ public class ms3 extends Service {
                     case 13:
                         // 原来处于没有播放状态
                         if(egg==1){
+                            amm.requestAudioFocus(focusRequest);
                             ep.prepare();
                             ep.play();
                             egg=2;
@@ -92,6 +113,7 @@ public class ms3 extends Service {
                             sendBroadcast(sendIntent);
                         }
                         if (status == 0x11) {
+                            amm.requestAudioFocus(focusRequest);
                             if(current==0||current==2||current==4){
                                 suzy=0x12;
                             }
@@ -111,6 +133,7 @@ public class ms3 extends Service {
                         }
                         // 原来处于播放状态
                         else if (status == 0x12) {
+                            amm.abandonAudioFocusRequest(focusRequest);
                             // 暂停
                             ep.pause();
                             // 改变为暂停状态
@@ -127,6 +150,7 @@ public class ms3 extends Service {
                         // 原来处于暂停状态
                         else if (status == 0x13) {
                             // 播放
+                            amm.requestAudioFocus(focusRequest);
                             ep.play();
                             // 改变状态
                             status = 0x12;
@@ -145,6 +169,7 @@ public class ms3 extends Service {
                     case 23:
                         egg=0;
                         if (status == 0x12 || status == 0x13) {
+                            amm.abandonAudioFocusRequest(focusRequest);
                             ep.stop();
                             ep.clearMediaItems();
                             status=0x11;
@@ -215,13 +240,18 @@ public class ms3 extends Service {
                         sendBroadcast(sendIntent);
                         break;
                     case 53:
-                        ep.stop();
-                        ep.clearMediaItems();
+                        amm.abandonAudioFocusRequest(focusRequest);
+                        ep.release();
                         current=0;
                         status=0x11;
                     case 63:
+                        amm.abandonAudioFocusRequest(focusRequest);
                         ep.pause();
                         status=0x13;
+                        sendIntent.putExtra("update3", status);
+                        sendIntent.putExtra("current3", current);
+                        sendIntent.putExtra("suzy3",suzy);
+                        sendBroadcast(sendIntent);
                     case 1590107:
                         if(current==0){
                             if(status==0x11){

@@ -5,6 +5,7 @@ import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothHeadset;
 import android.bluetooth.BluetoothProfile;
 import android.content.BroadcastReceiver;
+import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.media.AudioManager;
@@ -17,25 +18,14 @@ import android.view.ViewGroup;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.content.Context;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentTransaction;
 import androidx.lifecycle.ViewModelProvider;
 
-import com.prts.arkmusic.MainActivity;
-import com.prts.arkmusic.MusicService;
 import com.prts.arkmusic.R;
 import com.prts.arkmusic.databinding.FragmentEpBinding;
 import com.prts.arkmusic.ms3;
-
-import org.xmlpull.v1.XmlPullParser;
-
-import java.util.List;
 
 public class EpFragment extends Fragment{
     public static final String CTL_ACTION = "arkmusic.action.CTL_ACTION";
@@ -216,11 +206,17 @@ public class EpFragment extends Fragment{
                 if(BluetoothProfile.STATE_DISCONNECTED == adapter.getProfileConnectionState(BluetoothProfile.HEADSET)) {
                     //Bluetooth headset is now disconnected
                     Log.d("BLUE","BLUE");
+                    intentt.putExtra("control",6);
+                    intentt.putExtra("control2",62);
                     intentt.putExtra("control3",63);
+                    intentt.putExtra("control4",64);
                     getActivity().sendBroadcast(intentt);
                 }
             } if(AudioManager.ACTION_AUDIO_BECOMING_NOISY.equals(action)){
+                intentt.putExtra("control",6);
+                intentt.putExtra("control2",62);
                 intentt.putExtra("control3",63);
+                intentt.putExtra("control4",64);
                 getActivity().sendBroadcast(intentt);
             }
         }
