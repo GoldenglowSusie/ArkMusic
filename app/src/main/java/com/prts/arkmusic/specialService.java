@@ -21,7 +21,7 @@ public class specialService extends Service {
 
     AssetManager am;
     Thread processThread;
-    static final String[] musics = {"goodluck.mp3","damedane.flac"};
+    static final String[] musics = {"goodluck.mp3","damedane.flac","pvz_brainiac.flac"};
 
     // 当前的状态，0x11代表没有播放；0x12代表正在播放；0x13代表暂停
     int status = 0x11;
