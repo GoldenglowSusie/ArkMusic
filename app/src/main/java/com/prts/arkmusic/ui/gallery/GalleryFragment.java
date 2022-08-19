@@ -37,9 +37,9 @@ public class GalleryFragment extends Fragment{
     int status=0x11;
 
 
-    String[] titleStrs = {"Dash!", "Dash!", "皇帝的利刃","皇帝的利刃","倾潮","倾潮","巨浪与烈阳","巨浪与烈阳","Stop Breathing","Stop Breathing"};
-    String[] authorStrs = {"燃就完事了", "燃就完事了", "《遗尘漫步》","《遗尘漫步》","此歌曲仅42.8秒","此歌曲仅42.8秒","382/403","382/403","咕嘟，咕嘟","咕嘟，咕嘟"};
-    int[] im={R.mipmap.ic_am2,R.mipmap.ic_am2,R.mipmap.ic_wd,R.mipmap.ic_wd,R.drawable.doss,R.drawable.doss,R.drawable.doss,R.drawable.doss,R.drawable.doss,R.drawable.doss};
+    String[] titleStrs = {"Dash!", "Dash!", "皇帝的利刃","皇帝的利刃","倾潮","倾潮","巨浪与烈阳","巨浪与烈阳","Stop Breathing","Stop Breathing","穹顶之上","穹顶之上","“夹道欢迎”","“夹道欢迎”","“渐入佳境”","“渐入佳境”"};
+    String[] authorStrs = {"燃就完事了", "燃就完事了", "《遗尘漫步》","《遗尘漫步》","此歌曲仅42.8秒","此歌曲仅42.8秒","382/403","382/403","咕嘟，咕嘟","咕嘟，咕嘟","开燃！！！","开燃！！！","「理想城：长夏狂欢季」","「理想城：长夏狂欢季」","「理想城：长夏狂欢季」","「理想城：长夏狂欢季」"};
+    int[] im={R.mipmap.ic_am2,R.mipmap.ic_am2,R.mipmap.ic_wd,R.mipmap.ic_wd,R.drawable.doss,R.drawable.doss,R.drawable.doss,R.drawable.doss,R.drawable.doss,R.drawable.doss,R.drawable.summer22,R.drawable.summer22,R.drawable.summer22,R.drawable.summer22,R.drawable.summer22,R.drawable.summer22};
 
 
     public View onCreateView(@NonNull LayoutInflater inflater,

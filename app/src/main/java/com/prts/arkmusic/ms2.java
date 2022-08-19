@@ -24,7 +24,7 @@ public class ms2 extends Service {
 
     AssetManager am;
     Thread processThread;
-    static final String[] musics = {"m_bat_chasing_intro.wav", "m_bat_chasing_loop.wav", "m_bat_empgrd_intro.wav", "m_bat_empgrd_loop.wav","m_bat_captan_intro.wav","m_bat_captan_loop.wav","m_bat_act12side_01_intro.wav","m_bat_act12side_01_loop.wav","m_bat_act12side_02_intro.wav","m_bat_act12side_02_loop.wav"};
+    static final String[] musics = {"m_bat_chasing_intro.wav", "m_bat_chasing_loop.wav", "m_bat_empgrd_intro.wav", "m_bat_empgrd_loop.wav","m_bat_captan_intro.wav","m_bat_captan_loop.wav","m_bat_act12side_01_intro.wav","m_bat_act12side_01_loop.wav","m_bat_act12side_02_intro.wav","m_bat_act12side_02_loop.wav","summer22_boss_intro.wav","summer22_boss_loop.wav","summer22_01_intro.wav","summer22_01_loop.wav","summer22_02_intro.wav","summer22_02_loop.wav"};
 
 
     // 当前的状态，0x11代表没有播放；0x12代表正在播放；0x13代表暂停

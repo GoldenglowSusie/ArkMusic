@@ -36,9 +36,9 @@ public class HomeFragment extends Fragment{
     ImageView image,suzy;
     int status=0x11;
 
-    String[] titleStrs = {"陈与魏", "陈与魏", "遗尘漫步","遗尘漫步","多索雷斯假日","多索雷斯假日"};
-    String[] authorStrs = {"主线第八章、《阴云火花》", "主线第八章、《阴云火花》", "《遗尘漫步》","《遗尘漫步》","水陈：给我玩明日方舟！","水陈：给我玩明日方舟！"};
-    int[] im={R.mipmap.ic_lightsparkindarkness,R.mipmap.ic_lightsparkindarkness,R.mipmap.ic_wd,R.mipmap.ic_wd,R.drawable.doss,R.drawable.doss};
+    String[] titleStrs = {"陈与魏", "陈与魏", "遗尘漫步","遗尘漫步","多索雷斯假日","多索雷斯假日","欢迎来到际崖城","欢迎来到际崖城"};
+    String[] authorStrs = {"主线第八章、《阴云火花》", "主线第八章、《阴云火花》", "《遗尘漫步》","《遗尘漫步》","水陈：给我玩明日方舟！","水陈：给我玩明日方舟！","「理想城：长夏狂欢季」","「理想城：长夏狂欢季」"};
+    int[] im={R.mipmap.ic_lightsparkindarkness,R.mipmap.ic_lightsparkindarkness,R.mipmap.ic_wd,R.mipmap.ic_wd,R.drawable.doss,R.drawable.doss,R.drawable.summer22,R.drawable.summer22};
 
 
     public View onCreateView(@NonNull LayoutInflater inflater,

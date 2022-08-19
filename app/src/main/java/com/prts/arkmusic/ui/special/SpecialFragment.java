@@ -36,9 +36,9 @@ public class SpecialFragment extends Fragment{
     ImageView image,suzy;
     int status=0x11;
 
-    String[] titleStrs = {"好运来","ばかみたい","僵王博士"};
-    String[] authorStrs = {"歌手：祖海  下次寻访必出6星干员！！！","黒田崇矢  Damedane,dameyo~","Laura Shigihara"};
-    int[] im={R.mipmap.ic_am2,R.mipmap.ic_am2,R.drawable.skadi_};
+    String[] titleStrs = {"好运来","ばかみたい","僵王博士","博士行为测试(?)","Die Internationale"};
+    String[] authorStrs = {"歌手：祖海  下次寻访必出6星干员！！！","黒田崇矢  Damedane,dameyo~","Laura Shigihara","PRTS Kernel","心中理想，永不熄灭"};
+    int[] im={R.mipmap.ic_am2,R.mipmap.ic_am2,R.drawable.skadi_,R.mipmap.ic_am2,R.drawable.die_internationale};
 
 
     public View onCreateView(@NonNull LayoutInflater inflater,
