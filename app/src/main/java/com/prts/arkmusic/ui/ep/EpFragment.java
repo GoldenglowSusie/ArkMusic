@@ -1,6 +1,7 @@
 package com.prts.arkmusic.ui.ep;
 
 import android.app.AlertDialog;
+import android.app.NotificationManager;
 import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothHeadset;
 import android.bluetooth.BluetoothProfile;
@@ -150,6 +151,8 @@ public class EpFragment extends Fragment{
         intent.putExtra("control3",53);
         getActivity().sendBroadcast(intent);
         getActivity().stopService(new Intent(getActivity(),ms3.class));
+        NotificationManager notificationManager = (NotificationManager) getActivity().getSystemService(Context.NOTIFICATION_SERVICE);
+        notificationManager.cancel(3);
         binding = null;
     }
     public class ActivityReceiver extends BroadcastReceiver {

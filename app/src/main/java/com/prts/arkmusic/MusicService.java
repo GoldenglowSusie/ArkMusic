@@ -1,23 +1,31 @@
 package com.prts.arkmusic;
 
+import android.app.Notification;
+import android.app.NotificationChannel;
+import android.app.NotificationManager;
+import android.app.PendingIntent;
 import android.app.Service;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.res.AssetManager;
+import android.graphics.BitmapFactory;
 import android.media.AudioAttributes;
 import android.media.AudioFocusRequest;
 import android.media.AudioManager;
+import android.os.Build;
 import android.os.IBinder;
 import android.util.Log;
 
 import androidx.annotation.Nullable;
+import androidx.core.app.NotificationCompat;
 
 import com.google.android.exoplayer2.ExoPlayer;
 import com.google.android.exoplayer2.MediaItem;
 import com.google.android.exoplayer2.Player;
 import com.prts.arkmusic.ui.home.HomeFragment;
+import com.prts.arkmusic.ui.home.HomeViewModel;
 
 public class MusicService extends Service {
 
@@ -38,7 +46,6 @@ public class MusicService extends Service {
     public IBinder onBind(Intent intent) {
         return null;
     }
-
     @Override
     public void onCreate() {
         super.onCreate();
@@ -53,6 +60,9 @@ public class MusicService extends Service {
         sendIntent.putExtra("current",current);
         sendIntent.putExtra("suzy",suzy);
         sendBroadcast(sendIntent);
+
+
+
 
         Player.Listener listener=new Player.Listener() {
             @Override
@@ -265,5 +275,35 @@ public class MusicService extends Service {
         registerReceiver(serviceReceiver, filter);
 
         // 为MediaPlayer播放完成事件绑定监听器
+        NotificationManager notificationManager= (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+        PendingIntent pendingIntent;
+        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.S) {
+            pendingIntent = PendingIntent.getActivity(this, 1, new Intent(this, MainActivity.class), PendingIntent.FLAG_IMMUTABLE);
+        } else {
+            pendingIntent = PendingIntent.getActivity(this, 1, new Intent(this,MainActivity.class), PendingIntent.FLAG_ONE_SHOT);
+        }
+
+        //        获取Notification实例
+        Notification notification=new NotificationCompat.Builder(this,"MusicService")
+                .setContentTitle("ArkMusic正在运行")
+                .setContentText("ArkMusic正在运行于“主界面音乐”。点此以跳转。")
+                .setWhen(System.currentTimeMillis())
+                //             .setAutoCancel(false) 点击通知栏后是否消失
+                .setLargeIcon(BitmapFactory.decodeResource(getResources(), R.mipmap.ic_am2))
+                // .setCustomContentView(remoteView) // 设置自定义的RemoteView，需要API最低为24
+                .setSmallIcon(R.mipmap.ic_am2)
+                // 设置点击通知栏后跳转地址
+                .setContentIntent(pendingIntent)
+                .build();
+//        添加渠道
+        if(Build.VERSION.SDK_INT>=Build.VERSION_CODES.O){
+            NotificationChannel channel = new NotificationChannel("MusicService", "subscribeName", NotificationManager.IMPORTANCE_DEFAULT);
+            channel.setDescription("description");
+            notificationManager.createNotificationChannel(channel);
+        }
+        // 设置常驻 Flag
+        notification.flags = Notification.FLAG_ONGOING_EVENT;
+        //展示通知栏
+        notificationManager.notify(1,notification);
     }
 }

@@ -1,5 +1,6 @@
 package com.prts.arkmusic.ui.gallery;
 
+import android.app.NotificationManager;
 import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothHeadset;
 import android.bluetooth.BluetoothProfile;
@@ -132,6 +133,8 @@ public class GalleryFragment extends Fragment{
         intent.putExtra("control2",52);
         getActivity().sendBroadcast(intent);
         getActivity().stopService(new Intent(getActivity(),ms2.class));
+        NotificationManager notificationManager = (NotificationManager) getActivity().getSystemService(Context.NOTIFICATION_SERVICE);
+        notificationManager.cancel(2);
         binding = null;
     }
     public class ActivityReceiver extends BroadcastReceiver {

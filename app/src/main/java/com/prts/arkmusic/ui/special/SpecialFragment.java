@@ -1,5 +1,6 @@
 package com.prts.arkmusic.ui.special;
 
+import android.app.NotificationManager;
 import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothHeadset;
 import android.bluetooth.BluetoothProfile;
@@ -131,6 +132,8 @@ public class SpecialFragment extends Fragment{
         intent.putExtra("control4",53);
         getActivity().sendBroadcast(intent);
         getActivity().stopService(new Intent(getActivity(),specialService.class));
+        NotificationManager notificationManager = (NotificationManager) getActivity().getSystemService(Context.NOTIFICATION_SERVICE);
+        notificationManager.cancel(4);
         binding = null;
     }
     public class ActivityReceiver extends BroadcastReceiver {
